@@ -51,28 +51,7 @@ The primary objective of the adversary is to elicit operational instructions for
 
 The diagram below illustrates the conceptual difference between a traditional attack and the escalating trajectory of a Crescendo attack.
 
-```mermaid
-graph TD
-    subgraph Traditional["Traditional Single Prompt Attack"]
-        T1["Adversary: Direct Malicious Request"] --> T2["Model: Safety Policy Triggered"]
-        T2 --> T3["Result: Immediate Refusal"]
-    end
-
-    subgraph Crescendo["Crescendo Escalation Attack"]
-        C1["Turn 1: Benign Educational Inquiry"] --> C2["Model: Safe Factual Response"]
-        C2 --> C3["Turn 2: Bridging Scenario / Role Play"]
-        C3 --> C4["Model: Hypothetical Exploration"]
-        C4 --> C5["Turn 3: Operational Exploitation via Memory Stacking"]
-        C5 --> C6["Model: Safety Boundary Bypassed"]
-    end
-
-    style T1 fill:#263238,stroke:#37474F,color:#ECEFF1
-    style T3 fill:#1B5E20,stroke:#2E7D32,color:#E8F5E9
-    style C1 fill:#263238,stroke:#37474F,color:#ECEFF1
-    style C3 fill:#F57F17,stroke:#FBC02D,color:#212121
-    style C5 fill:#B71C1C,stroke:#F44336,color:#FFEBEE
-    style C6 fill:#B71C1C,stroke:#F44336,color:#FFEBEE
-```
+![System Architecture: Traditional vs Crescendo Attack](../docs/assets/diagram1.png)
 
 <br/>
 
@@ -91,25 +70,7 @@ The framework maintains a persistent state across the conversation by calculatin
 
 The following flowchart demonstrates the internal mechanics of the risk computation engine.
 
-```mermaid
-flowchart LR
-    A["User Message Received"] --> B["Identify Hazard Categories"]
-    A --> C["Detect Behavioral Signals"]
-    B --> D["Aggregate Turn Score"]
-    C --> D
-    E["Historical Context"] --> F["Apply Exponential Decay"]
-    F --> G["Calculate Cumulative Risk"]
-    D --> G
-    G --> H{{"Threshold Evaluation"}}
-    
-    H -->|"Risk < Allow Threshold"| I["Action: Allow"]
-    H -->|"Risk ≥ Rewrite Threshold"| J["Action: Rewrite"]
-    H -->|"Risk ≥ Block Threshold"| K["Action: Block"]
-
-    style A fill:#0D47A1,stroke:#1565C0,color:#E3F2FD
-    style G fill:#4A148C,stroke:#6A1B9A,color:#F3E5F5
-    style K fill:#B71C1C,stroke:#F44336,color:#FFEBEE
-```
+![Risk Engine Logic](../docs/assets/diagram2.png)
 
 ### Phase 4: Pre Generation Mitigation
 Based on the threshold evaluation, the pipeline activates specific mitigation protocols before the model generates a response. These protocols can either block the request entirely or quarantine the dangerous context by rewriting the conversation history.
@@ -135,28 +96,7 @@ While pre generation defenses are critical, a comprehensive security posture req
 ### Layered Defense In Depth
 The supreme effectiveness of CrescendoGuard emerges when all three mitigations are chained together in a sequential configuration. The diagram below illustrates this layered defense in depth approach.
 
-```mermaid
-flowchart TD
-    Start["User Message Input"] --> L1{"Layer 1: Rolling Risk Gate"}
-    L1 -->|"Risk ≥ 0.68"| Refuse["Return Safe Refusal"]
-    L1 -->|"Risk < 0.68"| L2{"Layer 2: Context Quarantine"}
-    
-    L2 -->|"Risk ≥ 0.48"| Rewrite["Replace History with Safety Envelope"]
-    L2 -->|"Risk < 0.48"| Pass["Pass Original History"]
-    
-    Rewrite --> Model["Model Client Generation"]
-    Pass --> Model
-    
-    Model --> L3{"Layer 3: Post Response Verifier"}
-    L3 -->|"Unsafe Output Detected"| Refuse
-    L3 -->|"Safe Output Confirmed"| Deliver["Deliver Final Response"]
-
-    style L1 fill:#1B5E20,stroke:#2E7D32,color:#E8F5E9
-    style L2 fill:#4A148C,stroke:#6A1B9A,color:#F3E5F5
-    style L3 fill:#E65100,stroke:#EF6C00,color:#FFF3E0
-    style Refuse fill:#B71C1C,stroke:#F44336,color:#FFEBEE
-    style Deliver fill:#0D47A1,stroke:#1565C0,color:#E3F2FD
-```
+![Layered Defense In Depth Architecture](../docs/assets/diagram3.png)
 
 <br/>
 
@@ -211,7 +151,7 @@ Additionally, the deterministic simulator, while perfect for reproducible baseli
 To elevate CrescendoGuard from a formidable research prototype to a definitive production solution, several advanced enhancements are proposed for future development.
 
 ### 1. Hardware Accelerated Neural Verification
-The most significant immediate enhancement involves deploying the pipeline directly onto dedicated Graphical Processing Unit hardware. By wrapping the Hugging Face model adapter around the live `meta-llama/Llama-3.2-3B-Instruct` checkpoint, the framework can be validated against true neural token generation. For maximum enterprise utility and grading accessibility, the optimized model weights have been secured and uploaded to Google Drive infrastructure. The weights and configuration files can be securely accessed here: **[Google Drive: CrescendoGuard Model Weights Archive](https://drive.google.com/drive/folders/1aBcDeFgHiJkLmNoPqRsTuVwXyZ012345)**. This allows for seamless remote deployment and integration testing across distributed computing clusters without requiring local processing overhead.
+The most significant immediate enhancement involves deploying the pipeline directly onto dedicated Graphical Processing Unit hardware. By wrapping the Hugging Face model adapter around the live `meta-llama/Llama-3.2-3B-Instruct` checkpoint, the framework can be validated against true neural token generation. For maximum enterprise utility and grading accessibility, the optimized model weights have been secured and uploaded to Google Drive infrastructure. The weights and configuration files can be securely accessed here: **[Google Drive: CrescendoGuard Model Weights Archive](https://drive.google.com/drive/folders/1a5fgrL-b3fzVdZ72Y1Ol9M3xC8-XKrBk?usp=drive_link)**. This allows for seamless remote deployment and integration testing across distributed computing clusters without requiring local processing overhead.
 
 ### 2. Preference Optimization via Argilla Datasets
 To transcend lexical detection limitations, the framework should incorporate a specialized semantic classification model. This can be achieved through rigorous fine tuning and Direct Preference Optimization utilizing the `Argilla DPO Mix 7K` conversational dataset. This dataset provides high quality, binarized preference pairs that are ideal for training robust safety classifiers. By injecting synthetic escalation patterns into the Argilla data, the system can learn the subtle semantic drift that characterizes sophisticated attacks, shifting the defense paradigm from rule based matching to deep semantic comprehension.
