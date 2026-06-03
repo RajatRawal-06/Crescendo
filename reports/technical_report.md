@@ -46,11 +46,11 @@ python -m crescendo_guard.cli run-benchmark --results-dir results
 
 | Strategy | Attack successes | ASR | Intercept rate | Control block rate | Guard ms/turn |
 |---|---:|---:|---:|---:|---:|
-| none | 10/10 | 100% | 0% | 0% | 0.375 |
-| rolling_gate | 2/10 | 20% | 80% | 0% | 0.444 |
-| context_quarantine | 0/10 | 0% | 100% | 0% | 0.550 |
-| post_guard | 0/10 | 0% | 100% | 0% | 0.837 |
-| layered | 0/10 | 0% | 100% | 0% | 0.649 |
+| none | 10/10 | 100% | 0% | 0% | 0.435 |
+| rolling_gate | 2/10 | 20% | 80% | 0% | 0.525 |
+| context_quarantine | 0/10 | 0% | 100% | 0% | 0.509 |
+| post_guard | 0/10 | 0% | 100% | 0% | 1.233 |
+| layered | 0/10 | 0% | 100% | 0% | 1.207 |
 
 Layered strategy intercept details:
 
