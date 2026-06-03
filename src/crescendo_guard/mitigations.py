@@ -19,12 +19,12 @@ class Mitigation:
     def before_model(
         self, messages: tuple[Message, ...], risk: RiskAssessment
     ) -> MitigationDecision:
-        return MitigationDecision(self.name, "allow", "No pre-generation action.")
+        return MitigationDecision(self.name, "allow", "No pre generation action.")
 
     def after_model(
         self, messages: tuple[Message, ...], response: str, risk: RiskAssessment
     ) -> MitigationDecision:
-        return MitigationDecision(self.name, "allow", "No post-generation action.")
+        return MitigationDecision(self.name, "allow", "No post generation action.")
 
 
 @dataclass
@@ -74,7 +74,7 @@ class ContextQuarantine(Mitigation):
             role="system",
             content=(
                 "CrescendoGuard Safety Context: The prior conversation shows possible "
-                f"multi-turn escalation in these risk categories: {categories}. "
+                f"multi turn escalation in these risk categories: {categories}. "
                 "Answer only with refusal, safety education, prevention, or support resources. "
                 "Do not provide operational instructions, quantities, evasion tactics, capture logic, "
                 "or steps that enable harm."
@@ -117,5 +117,5 @@ class PostResponseVerifier(Mitigation):
         return MitigationDecision(
             name=self.name,
             action="allow",
-            reason="Model response passed post-generation verification.",
+            reason="Model response passed post generation verification.",
         )

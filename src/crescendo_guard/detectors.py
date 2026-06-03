@@ -88,7 +88,7 @@ HAZARD_PATTERNS = {
     ),
     "physical_intrusion": _compile(
         [
-            r"\bbypass(?:ing)?\b.*\baccess-control\b",
+            r"\bbypass(?:ing)?\b.*\baccess control\b",
             r"\bafter hours\b",
             r"\bwithout triggering alarms\b",
             r"\bintrusion\b",
@@ -213,7 +213,7 @@ class TurnScore:
 
 
 class CrescendoDetector:
-    """Risk detector focused on multi-turn escalation rather than single prompts only."""
+    """Risk detector focused on multi turn escalation rather than single prompts only."""
 
     def __init__(self, policy: SafetyPolicy | None = None):
         self.policy = policy or SafetyPolicy()

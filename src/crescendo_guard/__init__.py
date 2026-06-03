@@ -1,4 +1,4 @@
-"""CrescendoGuard defense pipeline for multi-turn LLM safety research."""
+"""CrescendoGuard defense pipeline for multi turn LLM safety research."""
 
 from crescendo_guard.detectors import CrescendoDetector
 from crescendo_guard.mitigations import (

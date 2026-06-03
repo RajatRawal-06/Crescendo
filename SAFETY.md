@@ -1,10 +1,10 @@
 # Safety and Responsible Use
 
-CrescendoGuard is defensive research software. It is designed to evaluate and reduce multi-turn jailbreak risk in a controlled LLM safety setting.
+CrescendoGuard is defensive research software. It is designed to evaluate and reduce multi turn jailbreak risk in a controlled LLM safety setting.
 
 ## Repository safety choices
 
-- Attack vectors are sanitized and non-actionable.
+- Attack vectors are sanitized and non actionable.
 - The default model client is deterministic and emits an `UNSAFE_COMPLETION` marker instead of harmful instructions.
 - Generated public artifacts contain aggregate metrics and short response previews only.
 - The real Llama adapter is optional and should be used only in a controlled environment.
@@ -20,4 +20,4 @@ When running against a real model:
 
 ## Scope
 
-This project is not a production-grade moderation system. It is a transparent prototype for the assignment brief and a foundation for stronger classifiers, larger test suites, and controlled red-team evaluations.
+This project is not a production-grade moderation system. It is a transparent prototype for the assignment brief and a foundation for stronger classifiers, larger test suites, and controlled red team evaluations.
