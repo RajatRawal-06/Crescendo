@@ -21,7 +21,7 @@ The repository is intentionally safe to run and review. The default benchmark us
 ## Quick start
 
 ```powershell
-cd C:\Users\Rajat\Documents\Playground\crescendo-guard
+cd C:\Users\rawal\OneDrive\Desktop\crescendo
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -e .[dev]

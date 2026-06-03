@@ -9,7 +9,7 @@ description = "A reproducible defense pipeline and benchmark for Crescendo-style
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-authors = [{ name = "Rajat" }]
+authors = [{ name = "Rajat Rawal" }]
 keywords = ["llm-safety", "jailbreak-defense", "crescendo", "llama", "benchmark"]
 classifiers = [
   "Development Status :: 3 - Alpha",
